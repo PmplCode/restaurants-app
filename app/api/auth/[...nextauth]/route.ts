@@ -1,18 +1,19 @@
 import { connectMongoDB } from "@/app/lib/mongodb";
 import User, { IUser } from "@/models/user";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { SessionStrategy } from "next-auth";
 
 interface Credentials {
   email: string;
   password: string;
 }
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
       credentials: {},
 
       async authorize(credentials: Credentials) {
@@ -28,7 +29,7 @@ export const authOptions = {
           );
           if (!passwordMatch) return null;
 
-          return { name: user.fullName, email };
+          return { name: user.fullName, email } as any;
         } catch (error) {
           console.log("Error: ", error);
           throw new Error("Error during authentication");
@@ -37,7 +38,7 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as SessionStrategy,
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
@@ -47,4 +48,5 @@ export const authOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export const GET = handler.handlers.GET;
+export const POST = handler.handlers.POST;
