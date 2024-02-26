@@ -32,7 +32,7 @@ export const EditRestaurantForm = ({ id, restaurantData }) => {
 
     try {
       const { data: res } = await axios.put(
-        `/api/restaurants/${id}`,
+        `api/restaurants/${id}`,
         newRestaurantData
       );
       if (res?.error) {

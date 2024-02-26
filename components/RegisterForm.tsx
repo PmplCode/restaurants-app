@@ -54,7 +54,7 @@ export const RegisterForm = () => {
         return;
       }
 
-      const resp = await axios.post("/api/register", registerData);
+      const resp = await axios.post("api/register", registerData);
       if (resp.status === 201) {
         const form = e.target as HTMLFormElement;
         form.reset();
