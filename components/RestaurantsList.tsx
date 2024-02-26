@@ -24,7 +24,7 @@ export default async function RestaurantsList() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {res.restaurants?.map((r: IRestaurant) => (
+      {res?.restaurants?.map((r: IRestaurant) => (
         <div
           className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-md transition duration-300 hover:shadow-xl"
           key={r._id}
