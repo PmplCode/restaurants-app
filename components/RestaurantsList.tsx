@@ -19,12 +19,12 @@ const getRestaurants = async () => {
 };
 
 export default async function RestaurantsList() {
-  const { restaurants }: { restaurants: IRestaurant[] } =
+  const  res : { restaurants: IRestaurant[] } =
     await getRestaurants();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {restaurants.map((r: IRestaurant) => (
+      {res.restaurants?.map((r: IRestaurant) => (
         <div
           className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-md transition duration-300 hover:shadow-xl"
           key={r._id}
