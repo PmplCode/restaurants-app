@@ -22,41 +22,42 @@ export default async function RestaurantsList() {
     await getRestaurants();
 
   return (
-    <>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {restaurants.map((r: IRestaurant) => (
-        <>
-          <div
-            className="p-4 border border-slate-300 my-3 flex flex-col md:flex-row justify-between gap-5 md:items-start"
-            key={r._id}
-          >
-            <div className="flex items-center md:justify-start md:items-start gap-5">
-              <div className="relative w-full h-auto max-w-20 aspect-square">
-                <Image
-                  src={
-                    r.image ||
-                    "https://www.ergasia.es/pics_fotossectores/7/dibuix-hosteleria.jpg"
-                  }
-                  alt={r.name}
-                  width={100}
-                  height={100}
-                />
+        <div
+          className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-md transition duration-300 hover:shadow-xl"
+          key={r._id}
+        >
+          <div className="relative w-full h-64">
+            <Image
+              src={
+                r.image ||
+                "https://www.ergasia.es/pics_fotossectors/7/dibuix-hosteleria.jpg"
+              }
+              alt={r.name + " Restaurant"}
+              width={1000}
+              height={1000}
+              className="w-fit mx-auto h-[-webkit-fill-available]"
+            />
+          </div>
+          <div className="p-4">
+            <h2 className="text-xl font-bold mb-2">{r.name}</h2>
+            <p className="text-gray-700 mb-2">Food type: {r.cuisine_type}</p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <RemoveBtn id={r._id} />
+                <Link
+                  href={`/edit-restaurant/${r._id}`}
+                  className="text-gray-500 hover:text-gray-700 transition duration-300 ease-in-out"
+                >
+                  <HiPencilAlt size={24} />
+                </Link>
               </div>
-              <div className="flex flex-col gap-4">
-                <h2 className="font-bold text-lg md:text-2xl">{r.name}</h2>
-                <div>Food type: {r.cuisine_type}</div>
-              </div>
-            </div>
-
-            <div className="flex gap-2 items-center">
-              <RemoveBtn id={r._id} />
-              <Link href={`/edit-restaurant/${r._id}`}>
-                <HiPencilAlt size={24} />
-              </Link>
               <LikeBtn restaurantId={r._id} />
             </div>
           </div>
-        </>
+        </div>
       ))}
-    </>
+    </div>
   );
 }

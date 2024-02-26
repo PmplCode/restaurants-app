@@ -13,7 +13,7 @@ const getRestaurantById = async (id) => {
   }
 };
 
-const EditRestaurant = async ({ params }) => {
+const EditRestaurant = async ({ params } ) => {
   const { id } = params;
 
   const { restaurant } = await getRestaurantById(id);

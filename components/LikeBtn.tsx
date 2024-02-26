@@ -7,10 +7,18 @@ import { useSession } from "next-auth/react";
 import { Slide, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-export const LikeBtn = ({ restaurantId }) => {
+interface LikeBtnProps {
+  restaurantId: string;
+}
+
+interface UserData {
+  favouriteRestaurants: { _id: string }[];
+}
+
+export const LikeBtn: React.FC<LikeBtnProps> = ({ restaurantId }) => {
   const { data: session } = useSession();
-  const [loading, setLoading] = useState(false);
-  const [userFavorites, setUserFavorites] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [userFavorites, setUserFavorites] = useState<string[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -22,13 +30,15 @@ export const LikeBtn = ({ restaurantId }) => {
   const fetchUserFavorites = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("api/user-fav-restaurants", {
-        params: {
-          email: session.user.email,
-        },
-      });
-      const arrayId = [];
-      data.favouriteRestaurants.forEach((res) => arrayId.push(res._id));
+      const { data }: { data: UserData } = await axios.get(
+        "api/user-fav-restaurants",
+        {
+          params: {
+            email: session.user.email,
+          },
+        }
+      );
+      const arrayId = data.favouriteRestaurants.map((res) => res._id);
       setUserFavorites(arrayId);
       setLoading(false);
     } catch (error) {
@@ -39,7 +49,7 @@ export const LikeBtn = ({ restaurantId }) => {
 
   const handleLikeBtn = async () => {
     if (!session?.user) {
-      toast.error("You must be logged!", {
+      toast.error("Log in to add to favorite", {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -59,7 +69,7 @@ export const LikeBtn = ({ restaurantId }) => {
         restaurantId: restaurantId,
       });
       setLoading(false);
-      fetchUserFavorites(); // Update user favorites after adding a new one
+      fetchUserFavorites();
     } catch (error) {
       console.error("Error liking restaurant:", error);
       setLoading(false);

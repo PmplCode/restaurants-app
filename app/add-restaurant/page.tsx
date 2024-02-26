@@ -1,11 +1,12 @@
-"use client";
+"use client"
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { Slide, toast } from "react-toastify";
 
 const AddRestaurant = () => {
-  const cuisine_type_values = [
+  const cuisineTypeValues = [
     "Asian",
     "Pizza",
     "American",
@@ -23,24 +24,20 @@ const AddRestaurant = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-    const cuisineType = formData.get("cuisine_type") as string;
-
-    if (!name || !cuisineType) setErrorMessage("Fill all fields please.");
+    if (!restaurantData.name || !restaurantData.cuisine_type) {
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
 
     try {
-      const { data: res } = await axios.post(
-        "api/restaurants",
-        restaurantData
-      );
+      const { data: res } = await axios.post("api/restaurants", restaurantData);
 
       if (res?.error) {
-        setErrorMessage("Invalid Credentials");
+        setErrorMessage("Invalid credentials");
         return;
       }
 
-      toast.success("Restaurant created successfuly !", {
+      toast.success("Restaurant created successfully!", {
         position: "bottom-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -51,10 +48,12 @@ const AddRestaurant = () => {
         theme: "light",
         transition: Slide,
       });
+
       router.replace("/");
-      return router.refresh();
+      router.refresh()
     } catch (error) {
-      console.log("err: ", error);
+      setErrorMessage("An error occurred. Please try again later.");
+      console.error("Error creating restaurant:", error);
     }
   };
 
@@ -68,6 +67,7 @@ const AddRestaurant = () => {
             type="text"
             name="name"
             placeholder="Restaurant Name"
+            value={restaurantData.name}
             onChange={(e) =>
               setRestaurantData((prev) => ({ ...prev, name: e.target.value }))
             }
@@ -76,7 +76,7 @@ const AddRestaurant = () => {
           <select
             name="cuisine_type"
             className="border border-slate-500 px-8 py-2"
-            defaultValue="default"
+            value={restaurantData.cuisine_type}
             onChange={(e) =>
               setRestaurantData((prev) => ({
                 ...prev,
@@ -84,10 +84,10 @@ const AddRestaurant = () => {
               }))
             }
           >
-            <option value="default" disabled>
+            <option value="" disabled>
               Cuisine type...
             </option>
-            {cuisine_type_values.map((type, i) => (
+            {cuisineTypeValues.map((type, i) => (
               <option value={type} key={i}>
                 {type}
               </option>

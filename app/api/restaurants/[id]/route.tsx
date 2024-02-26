@@ -1,10 +1,23 @@
 import { connectMongoDB } from "@/app/lib/mongodb";
-import Restaurant from "@/models/restaurant";
-import { NextResponse } from "next/server";
+import Restaurant, { IRestaurant } from "@/models/restaurant"; 
+import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(req, { params }) {
+interface PutRequestData {
+  name: string;
+  cuisine_type: string;
+}
+
+interface GetParams {
+  id: string;
+}
+
+interface GetResponseData {
+  restaurant: IRestaurant | null;
+}
+
+export async function PUT(req: NextRequest, { params }: { params: GetParams }) {
   const { id } = params;
-  const { name, cuisine_type } = await req.json();
+  const { name, cuisine_type } = await req.json() as PutRequestData;
 
   await connectMongoDB();
   const res = await Restaurant.findByIdAndUpdate(
@@ -16,11 +29,13 @@ export async function PUT(req, { params }) {
   return NextResponse.json({ message: "Restaurant updated" }, { status: 200 });
 }
 
-export async function GET(req, { params }) {
+export async function GET(req: NextRequest, { params }: { params: GetParams }) {
   const { id } = params;
 
   await connectMongoDB();
   const restaurant = await Restaurant.findById(id);
 
-  return NextResponse.json({ restaurant }, { status: 200 });
+  const responseData: GetResponseData = { restaurant };
+
+  return NextResponse.json(responseData, { status: 200 });
 }
