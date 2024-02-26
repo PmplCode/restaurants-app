@@ -24,10 +24,8 @@ const nextConfig = {
         ],
     },
     experimental: {
-        serverActions: {
-          allowedOrigins: [],
-        },
-      },
+        serverActions: true,
+    },
 };
 
 export default nextConfig;
