@@ -5,12 +5,12 @@ import axios from "axios";
 import { IRestaurant } from "@/models/restaurant";
 import Image from "next/image";
 import { LikeBtn } from "./LikeBtn";
-import { ObjectId, ObjectIdLike } from "bson";
+
 
 const getRestaurants = async () => {
   try {
     const { data: res } = await axios.get(
-      "https://restaurants-app-nine.vercel.app/api/restaurants"
+      `https://restaurants-app-nine.vercel.app/api/restaurants&timestamp=${new Date().getTime()}`, 
     );
     return res;
   } catch (error) {
