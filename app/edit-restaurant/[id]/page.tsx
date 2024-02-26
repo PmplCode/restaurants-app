@@ -4,7 +4,7 @@ import axios from "axios";
 const getRestaurantById = async (id) => {
   try {
     const { data: res } = await axios.get(
-      `http://localhost:3000/api/restaurants/${id}`
+      `/api/restaurants/${id}`
     );
 
     return res;

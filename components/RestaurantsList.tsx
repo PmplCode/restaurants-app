@@ -10,11 +10,11 @@ import { ObjectId, ObjectIdLike } from "bson";
 const getRestaurants = async () => {
   try {
     const { data: res } = await axios.get(
-      "http://localhost:3000/api/restaurants"
+      "/api/restaurants"
     );
     return res;
   } catch (error) {
-    console.log("Error loading topics: ", error);
+    console.log("Error loading restaurants: ", error);
   }
 };
 
