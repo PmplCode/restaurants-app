@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RemoveBtn } from "./RemoveBtn";
-import { HiHeart, HiPencilAlt } from "react-icons/hi";
+import { HiPencilAlt } from "react-icons/hi";
 import axios from "axios";
 import { IRestaurant } from "@/models/restaurant";
 import Image from "next/image";
