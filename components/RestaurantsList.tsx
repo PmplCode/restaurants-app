@@ -10,7 +10,7 @@ import { ObjectId, ObjectIdLike } from "bson";
 const getRestaurants = async () => {
   try {
     const { data: res } = await axios.get(
-      "https://restaurants-g1djryvag-pmplcodes-projects.vercel.app/api/restaurants"
+      "https://restaurants-app-nine.vercel.app/api/restaurants"
     );
     return res;
   } catch (error) {

@@ -25,7 +25,7 @@ export const LikeBtn: React.FC<LikeBtnProps> = ({ restaurantId }) => {
     try {
       setLoading(true);
       const { data }: { data: UserData } = await axios.get(
-        "https://restaurants-g1djryvag-pmplcodes-projects.vercel.app/api/user-fav-restaurants",
+        "https://restaurants-app-nine.vercel.app/api/user-fav-restaurants",
         {
           params: {
             email: session.user.email,
@@ -64,7 +64,7 @@ export const LikeBtn: React.FC<LikeBtnProps> = ({ restaurantId }) => {
     }
     try {
       setLoading(true);
-      await axios.post("https://restaurants-g1djryvag-pmplcodes-projects.vercel.app/api/user-fav-restaurants", {
+      await axios.post("https://restaurants-app-nine.vercel.app/api/user-fav-restaurants", {
         email: session?.user?.email,
         restaurantId: restaurantId,
       });

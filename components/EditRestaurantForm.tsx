@@ -32,7 +32,7 @@ export const EditRestaurantForm = ({ id, restaurantData }) => {
 
     try {
       const { data: res } = await axios.put(
-        `https://restaurants-g1djryvag-pmplcodes-projects.vercel.app/api/restaurants/${id}`,
+        `https://restaurants-app-nine.vercel.app/api/restaurants/${id}`,
         newRestaurantData
       );
       if (res?.error) {
