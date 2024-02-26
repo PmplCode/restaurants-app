@@ -30,7 +30,7 @@ const AddRestaurant = () => {
     }
 
     try {
-      const { data: res } = await axios.post("api/restaurants", restaurantData);
+      const { data: res } = await axios.post("https://restaurants-app-nine.vercel.app/api/restaurants", restaurantData);
 
       if (res?.error) {
         setErrorMessage("Invalid credentials");
