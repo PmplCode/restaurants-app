@@ -1,6 +1,6 @@
 import { connectMongoDB } from "@/app/lib/mongodb";
 import User from "@/models/user";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
 interface RegisterData {
@@ -10,7 +10,7 @@ interface RegisterData {
   password: string;
 }
 
-export async function POST(req: RegisterData) {
+export async function POST(req: NextRequest) {
   try {
     const { fullName, email, password }: RegisterData = await req.json();
     const hashedPassword = await bcrypt.hash(password, 10);

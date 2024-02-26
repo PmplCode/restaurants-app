@@ -11,7 +11,7 @@ interface Credentials {
   password: string;
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       credentials: {},
@@ -48,5 +48,4 @@ export const authOptions: NextAuthOptions = {
 
 const handler = NextAuth(authOptions);
 
-export const GET = handler.handlers.GET;
-export const POST = handler.handlers.POST;
+export { handler as GET, handler as POST };

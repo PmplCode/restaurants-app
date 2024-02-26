@@ -2,11 +2,11 @@
 
 import axios from "axios";
 import { HiOutlineTrash } from "react-icons/hi";
-import { ObjectId } from "bson";
 import { Slide, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import mongoose from "mongoose";
 
-export const RemoveBtn = ({ id }: ObjectId) => {
+export const RemoveBtn = ({ id }: any) => {
   const rounter = useRouter();
 
   const removeRestaurant = async () => {

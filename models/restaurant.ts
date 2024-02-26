@@ -1,7 +1,6 @@
 import mongoose, { Schema, Document, Model, ObjectId } from "mongoose";
 
 export interface IRestaurant extends Document {
-  _id: ObjectId;
   name: string;
   neighborhood?: string;
   photograph?: string;
@@ -11,7 +10,7 @@ export interface IRestaurant extends Document {
     lng?: number;
   };
   image?: string;
-  cuisine_type: ["Asian", "Pizza", "American", "Mexican", "Other"];
+  cuisine_type: "Asian", "Pizza", "American", "Mexican", "Other";
   operating_hours: {
     Monday: string;
     Tuesday: string;
@@ -24,9 +23,7 @@ export interface IRestaurant extends Document {
   reviews: any;
 }
 
-type IRestaurantSchemaDefinition = mongoose.SchemaDefinition<IRestaurant>;
-
-const restaurantSchema: Schema<IRestaurantSchemaDefinition> = new Schema(
+const restaurantSchema: Schema<IRestaurant> = new Schema(
   {
     name: {
       type: String,

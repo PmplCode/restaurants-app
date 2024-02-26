@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(req);
+  const session = await getServerSession();
 
   if (!session) return NextResponse.json({ message: "User not logged." });
 

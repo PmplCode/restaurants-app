@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { HiHeart } from "react-icons/hi";
 import { useSession } from "next-auth/react";
@@ -21,31 +21,31 @@ export const LikeBtn: React.FC<LikeBtnProps> = ({ restaurantId }) => {
   const [userFavorites, setUserFavorites] = useState<string[]>([]);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchUserFavorites = async () => {
-      try {
-        setLoading(true);
-        const { data }: { data: UserData } = await axios.get(
-          "api/user-fav-restaurants",
-          {
-            params: {
-              email: session.user.email,
-            },
-          }
-        );
-        const arrayId = data.favouriteRestaurants.map((res) => res._id);
-        setUserFavorites(arrayId);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching user favorites:", error);
-        setLoading(false);
-      }
-    };
+  const fetchUserFavorites = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { data }: { data: UserData } = await axios.get(
+        "api/user-fav-restaurants",
+        {
+          params: {
+            email: session.user.email,
+          },
+        }
+      );
+      const arrayId = data.favouriteRestaurants.map((res) => res._id);
+      setUserFavorites(arrayId);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching user favorites:", error);
+      setLoading(false);
+    }
+  }, [session?.user?.email]);
 
+  useEffect(() => {
     if (session?.user?.email) {
       fetchUserFavorites();
     }
-  }, [session]);
+  }, [fetchUserFavorites, session]);
 
   const handleLikeBtn = async () => {
     if (!session?.user) {
