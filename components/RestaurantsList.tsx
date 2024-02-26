@@ -5,6 +5,7 @@ import axios from "axios";
 import { IRestaurant } from "@/models/restaurant";
 import Image from "next/image";
 import { LikeBtn } from "./LikeBtn";
+export const fetchCache = 'force-no-store'
 
 
 const getRestaurants = async () => {
