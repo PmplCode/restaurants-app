@@ -50,7 +50,7 @@ const AddRestaurant = () => {
       });
 
       router.replace("/");
-      router.refresh()
+      return router.refresh()
     } catch (error) {
       setErrorMessage("An error occurred. Please try again later.");
       console.error("Error creating restaurant:", error);
