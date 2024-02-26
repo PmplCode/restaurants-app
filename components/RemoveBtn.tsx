@@ -11,7 +11,7 @@ export const RemoveBtn = ({ id }: any) => {
 
   const removeRestaurant = async () => {
     const { data: res } = await axios.delete(
-      `http://127.0.0.1:1337/api/restaurants?id=${id}`
+      `https://restaurants-g1djryvag-pmplcodes-projects.vercel.app/api/restaurants?id=${id}`
     );
 
     toast.success(res.message, {
