@@ -4,7 +4,7 @@ import axios from "axios";
 const getRestaurantById = async (id) => {
   try {
     const { data: res } = await axios.get(
-      `https://restaurants-app-nine.vercel.app/api/restaurants/${id}`
+      `http://127.0.0.1:1337/api/restaurants/${id}`
     );
 
     return res;

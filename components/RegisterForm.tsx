@@ -46,7 +46,7 @@ export const RegisterForm = () => {
     }
 
     try {
-      const { data: resUserExists } = await axios.post("https://restaurants-app-nine.vercel.app/api/userExists", {
+      const { data: resUserExists } = await axios.post("http://127.0.0.1:1337/api/userExists", {
         email,
       });
       if (resUserExists.user) {
@@ -54,7 +54,7 @@ export const RegisterForm = () => {
         return;
       }
 
-      const resp = await axios.post("https://restaurants-app-nine.vercel.app/api/register", registerData);
+      const resp = await axios.post("http://127.0.0.1:1337/api/register", registerData);
       if (resp.status === 201) {
         const form = e.target as HTMLFormElement;
         form.reset();
