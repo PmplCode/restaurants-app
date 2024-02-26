@@ -10,7 +10,7 @@ import { LikeBtn } from "./LikeBtn";
 const getRestaurants = async () => {
   try {
     const { data: res } = await axios.get(
-      `https://restaurants-app-nine.vercel.app/api/restaurants&timestamp=${new Date().getTime()}`, 
+      `https://restaurants-app-nine.vercel.app/api/restaurants?timestamp=${new Date().getTime()}`, 
     );
     return res;
   } catch (error) {
