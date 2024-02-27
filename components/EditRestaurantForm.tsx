@@ -101,7 +101,7 @@ export const EditRestaurantForm = ({ id, restaurantData }) => {
         )}
 
         <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit transition-all rounded-md hover:rounded-xl">
-          Add Restaurant
+          Edit Restaurant
         </button>
       </form>
     </>
