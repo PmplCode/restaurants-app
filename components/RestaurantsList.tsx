@@ -38,7 +38,7 @@ export default async function RestaurantsList() {
           <div className="relative w-full h-64">
             <Image
               src={
-                r.image ||
+                r.image ??
                 "https://www.ergasia.es/pics_fotossectors/7/dibuix-hosteleria.jpg"
               }
               alt={r.name + " Restaurant"}
