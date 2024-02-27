@@ -16,10 +16,14 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "**",
+                pathname: '**',
+                port: '',
             },
             {
                 protocol: "http",
                 hostname: "**",
+                pathname: '**',
+                port: '',
             },
         ],
     },
