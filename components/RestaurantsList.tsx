@@ -5,17 +5,22 @@ import axios from "axios";
 import { IRestaurant } from "@/models/restaurant";
 import Image from "next/image";
 import { LikeBtn } from "./LikeBtn";
-export const fetchCache = 'force-no-store'
-
+export const fetchCache = "force-no-store";
 
 const getRestaurants = async () => {
   try {
-    const { data: res } = await axios.get(
-      `https://restaurants-app-nine.vercel.app/api/restaurants?timestamp=${new Date().getTime()}`, 
+    const res = await fetch(
+      "https://restaurants-app-nine.vercel.app/api/restaurants",
+      { cache: "no-store" }
     );
-    return res;
+    if (!res.ok) {
+      throw new Error("Failed to fetch restaurants");
+    }
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.log("Error loading restaurants: ", error);
+    throw error;
   }
 };
 

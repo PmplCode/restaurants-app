@@ -2,7 +2,7 @@
 const nextConfig = {
     headers: () => [
         {
-            source: 'https://restaurants-app-nine.vercel.app/',
+            source: '/',
             headers: [
                 {
                     key: 'Cache-Control',
