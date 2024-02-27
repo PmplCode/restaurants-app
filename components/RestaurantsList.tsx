@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { RemoveBtn } from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
-import axios from "axios";
 import { IRestaurant } from "@/models/restaurant";
 import Image from "next/image";
 import { LikeBtn } from "./LikeBtn";
 export const fetchCache = "force-no-store";
+import restaurantDefaultImage from "public/restaurant-default-image.jpg";
 
 const getRestaurants = async () => {
   try {
@@ -37,10 +37,7 @@ export default async function RestaurantsList() {
         >
           <div className="relative w-full h-64">
             <Image
-              src={
-                r.image ??
-                "https://www.ergasia.es/pics_fotossectors/7/dibuix-hosteleria.jpg"
-              }
+              src={r.image ?? "/restaurant-default-image.jpg"}
               alt={r.name + " Restaurant"}
               width={1000}
               height={1000}

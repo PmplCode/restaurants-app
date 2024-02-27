@@ -71,7 +71,7 @@ export const LoginForm = () => {
               name="password"
               placeholder="Password"
             />
-            <button className="bg-green-600 text-white font-bold cursor-pointer px-6 py-2 hover:bg-green-700">
+            <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit transition-all rounded-md hover:rounded-xl">
               Login
             </button>
           </div>

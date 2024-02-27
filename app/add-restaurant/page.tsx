@@ -59,9 +59,9 @@ const AddRestaurant = () => {
 
   return (
     <>
-      <h1>Add Restaurant</h1>
-      <div className="md:w-fit mx-auto">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <h1 className="font-bold text-2xl text-slate-700 text-center mb-4">Add Restaurant</h1>
+      <div className="sm:w-fit mx-auto">
+        <form onSubmit={handleSubmit} className="max-w-full w-fit flex flex-col gap-4 mx-auto">
           <input
             className="border border-slate-500 px-8 py-2"
             type="text"
@@ -100,7 +100,7 @@ const AddRestaurant = () => {
           )}
           <button
             type="submit"
-            className="bg-green-600 font-bold text-white py-3 px-6 w-fit transition-all rounded-md hover:rounded-xl"
+            className="bg-green-600 font-bold text-white py-3 px-6 w-fit transition-all rounded-md hover:rounded-xl mx-auto"
           >
             Add Restaurant
           </button>

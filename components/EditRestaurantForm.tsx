@@ -57,7 +57,7 @@ export const EditRestaurantForm = ({ id, restaurantData }) => {
   };
   return (
     <>
-      <h1>Edit Restaurant</h1>
+      <h1 className="font-bold text-2xl text-slate-700 text-center mb-4">Edit Restaurant</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 items-center"
