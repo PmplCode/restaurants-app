@@ -35,7 +35,7 @@ export const RestaurantDetailPage: React.FC<RestaurantDetailProps> = ({
       </div>
       {restaurant?.operating_hours && (
         <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Operating Hours</h2>
+          <h2 className="text-xl font-semibold mb-2">Operating Hours </h2>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(restaurant?.operating_hours).map(([day, hours]) => (
               <div key={day}>
